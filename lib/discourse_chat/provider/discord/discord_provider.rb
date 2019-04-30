@@ -43,7 +43,7 @@ module DiscourseChat
           category = (topic.category.parent_category) ? "[#{topic.category.parent_category.name}/#{topic.category.name}]" : "[#{topic.category.name}]"
         end
 
-        if post_number = 0
+        if post_number == 1
 
           message = {
           content: SiteSetting.chat_integration_discord_message_content,
@@ -66,9 +66,37 @@ module DiscourseChat
           }]
         }
 
-        message
+        return message
 
         end
+
+        if post_number != 1
+
+          message = {
+          content: SiteSetting.chat_integration_discord_message_content,
+          embeds: [{
+            title: "#{topic.title}",
+            footer: {
+              text: "New Post"
+            },
+            thumbnail: {
+              url: "https://i.imgur.com/aEUkA0h.png"
+            },
+            color: topic.category ? topic.category.color.to_i(16) : nil,
+            description: post.excerpt(SiteSetting.chat_integration_discord_excerpt_length, text_entities: true, strip_links: true, remap_emoji: true),
+            url: post.full_url,
+            author: {
+              name: display_name,
+              url: Discourse.base_url + "/u/" + post.user.username,
+              icon_url: ensure_protocol(post.user.small_avatar_url)
+            }
+          }]
+        }
+
+        return message
+
+        end
+
       end
 
       def self.trigger_notification(post, channel)
