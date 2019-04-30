@@ -52,7 +52,7 @@ module DiscourseChat
           embeds: [{
             title: "#{(category == '[uncategorized]') ? '' : category} #{topic.title}",
             footer: {
-              text: "New Thread • Invictus Roleplay Community"
+              text: "New Thread • Invictus Roleplay Community - HEX: #{post.user.custom_fields["Embed Colour"]}"
             },
             thumbnail: {
               url: "https://i.imgur.com/aEUkA0h.png"
