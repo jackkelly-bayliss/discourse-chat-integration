@@ -3,9 +3,9 @@ en:
     admin:
       site_settings:
         categories:
-          chat_integration: "Chat Integrations"
+          chat_integration: "Invictus Chat Integrations"
     chat_integration:
-      menu_title: "Chat Integrations"
+      menu_title: "Invictus Chat Integrations"
       settings: "Settings"
       no_providers: "You need to enable some providers in the plugin settings"
       channels_with_errors: "Some channels for this provider failed last time messages were sent. Click the error icon(s) to learn more."
