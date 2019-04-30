@@ -1,8 +1,8 @@
-# name: discourse-chat-integration
+# name: invictus-discourse-chat-integration
 # about: This plugin integrates discourse with a number of chat providers
-# version: 0.1
+# version: 0.2
 # url: https://github.com/discourse/discourse-chat-integration
-# author: David Taylor
+# author: Jack Hansen
 
 enabled_site_setting :chat_integration_enabled
 
