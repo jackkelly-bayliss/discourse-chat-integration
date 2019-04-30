@@ -33,20 +33,29 @@ module DiscourseChat
         full_name = post.user.name || ""
 
         if !(full_name.strip.empty?) && (full_name.strip.gsub(' ', '_').casecmp(post.user.username) != 0) && (full_name.strip.gsub(' ', '').casecmp(post.user.username) != 0)
-          display_name = "#{full_name} @#{post.user.username}"
+          display_name = "#{full_name} (@#{post.user.username})"
         end
 
         topic = post.topic
+        first_post = topic.view.posts&.first
 
         category = ''
         if topic.category
           category = (topic.category.parent_category) ? "[#{topic.category.parent_category.name}/#{topic.category.name}]" : "[#{topic.category.name}]"
         end
 
-        message = {
+        if first_post&.post.number != 1
+
+          message = {
           content: SiteSetting.chat_integration_discord_message_content,
           embeds: [{
             title: "#{topic.title}",
+            footer: {
+              text: "New Thread"
+            },
+            thumbnail: {
+              url: "https://i.imgur.com/aEUkA0h.png"
+            },
             color: topic.category ? topic.category.color.to_i(16) : nil,
             description: post.excerpt(SiteSetting.chat_integration_discord_excerpt_length, text_entities: true, strip_links: true, remap_emoji: true),
             url: post.full_url,
@@ -59,6 +68,8 @@ module DiscourseChat
         }
 
         message
+
+        end
       end
 
       def self.trigger_notification(post, channel)
