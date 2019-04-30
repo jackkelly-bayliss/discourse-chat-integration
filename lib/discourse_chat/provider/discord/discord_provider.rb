@@ -50,7 +50,7 @@ module DiscourseChat
           embeds: [{
             title: "#{topic.title}",
             footer: {
-              text: "New Thread"
+              text: "New Thread • Invictus Roleplay Community"
             },
             thumbnail: {
               url: "https://i.imgur.com/aEUkA0h.png"
@@ -77,7 +77,7 @@ module DiscourseChat
           embeds: [{
             title: "#{topic.title}",
             footer: {
-              text: "New Post"
+              text: "New Post • Invictus Roleplay Community"
             },
             thumbnail: {
               url: "https://i.imgur.com/aEUkA0h.png"
