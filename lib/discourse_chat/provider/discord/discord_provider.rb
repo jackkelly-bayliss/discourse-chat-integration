@@ -44,7 +44,6 @@ module DiscourseChat
         end
 
         custom_user_embed_color = post.user.custom_fields["user_field_#{(UserField.find_by name: 'Embed Colour').id}"]
-        no_field = "34495e"
 
         if post.post_number == 1
 
@@ -58,7 +57,7 @@ module DiscourseChat
             thumbnail: {
               url: "https://i.imgur.com/aEUkA0h.png"
             },
-            color: custom_user_embed_color ? custom_user_embed_color.to_i(16) : no_field.to_i(16) : nil,
+            color: custom_user_embed_color ? custom_user_embed_color.to_i(16) : nil,
             description: post.excerpt(SiteSetting.chat_integration_discord_excerpt_length, text_entities: true, strip_links: true, remap_emoji: true),
             url: post.full_url,
             author: {
@@ -85,7 +84,7 @@ module DiscourseChat
             thumbnail: {
               url: "https://i.imgur.com/aEUkA0h.png"
             },
-            color: custom_user_embed_color ? custom_user_embed_color.to_i(16) : no_field.to_i(16) : nil,
+            color: custom_user_embed_color ? custom_user_embed_color.to_i(16) : nil,
             description: post.excerpt(SiteSetting.chat_integration_discord_excerpt_length, text_entities: true, strip_links: true, remap_emoji: true),
             url: post.full_url,
             author: {
