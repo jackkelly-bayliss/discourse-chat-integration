@@ -43,7 +43,7 @@ module DiscourseChat
           category = (topic.category.parent_category) ? "[#{topic.category.parent_category.name}/#{topic.category.name}]" : "[#{topic.category.name}]"
         end
 
-        custom_user_embed_color = post.user.custom_fields["embed_colour"]
+        custom_user_embed_color = post.user.custom_fields["user_field_#{(UserField.find_by name: 'Embed Colour').id}"]
 
         if post.post_number == 1
 
@@ -52,7 +52,7 @@ module DiscourseChat
           embeds: [{
             title: "#{(category == '[uncategorized]') ? '' : category} #{topic.title}",
             footer: {
-              text: "New Thread • Invictus Roleplay Community - HEX: #{post.user.custom_fields["embed_colour"]}"
+              text: "New Thread • Invictus Roleplay Community - HEX: #{post.user.custom_fields["user_field_#{(UserField.find_by name: 'Embed Colour').id}"]}"
             },
             thumbnail: {
               url: "https://i.imgur.com/aEUkA0h.png"
