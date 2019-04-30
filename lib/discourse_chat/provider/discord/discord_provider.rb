@@ -43,19 +43,21 @@ module DiscourseChat
           category = (topic.category.parent_category) ? "[#{topic.category.parent_category.name}/#{topic.category.name}]" : "[#{topic.category.name}]"
         end
 
+        custom_user_embed_color = post.user.custom_fields["Embed Colour"]
+
         if post.post_number == 1
 
           message = {
           content: SiteSetting.chat_integration_discord_message_content,
           embeds: [{
-            title: "#{topic.title}",
+            title: "#{(category == '[uncategorized]') ? '' : category} #{topic.title}",
             footer: {
               text: "New Thread • Invictus Roleplay Community"
             },
             thumbnail: {
               url: "https://i.imgur.com/aEUkA0h.png"
             },
-            color: topic.category ? topic.category.color.to_i(16) : nil,
+            color: custom_user_embed_color ? custom_user_embed_color.to_i(16) : topic.category ? topic.category.color.to_i(16) : nil,
             description: post.excerpt(SiteSetting.chat_integration_discord_excerpt_length, text_entities: true, strip_links: true, remap_emoji: true),
             url: post.full_url,
             author: {
@@ -75,14 +77,14 @@ module DiscourseChat
           message = {
           content: SiteSetting.chat_integration_discord_message_content,
           embeds: [{
-            title: "#{topic.title}",
+            title: "#{(category == '[uncategorized]') ? '' : category} #{topic.title}",
             footer: {
               text: "New Post • Invictus Roleplay Community"
             },
             thumbnail: {
               url: "https://i.imgur.com/aEUkA0h.png"
             },
-            color: topic.category ? topic.category.color.to_i(16) : nil,
+            color: custom_user_embed_color ? custom_user_embed_color.to_i(16) : topic.category ? topic.category.color.to_i(16) : nil,
             description: post.excerpt(SiteSetting.chat_integration_discord_excerpt_length, text_entities: true, strip_links: true, remap_emoji: true),
             url: post.full_url,
             author: {
