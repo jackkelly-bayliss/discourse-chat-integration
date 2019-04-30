@@ -43,7 +43,7 @@ module DiscourseChat
           category = (topic.category.parent_category) ? "[#{topic.category.parent_category.name}/#{topic.category.name}]" : "[#{topic.category.name}]"
         end
 
-        if post_number == 1
+        if post.post_number == 1
 
           message = {
           content: SiteSetting.chat_integration_discord_message_content,
@@ -70,7 +70,7 @@ module DiscourseChat
 
         end
 
-        if post_number != 1
+        if post.post_number != 1
 
           message = {
           content: SiteSetting.chat_integration_discord_message_content,
