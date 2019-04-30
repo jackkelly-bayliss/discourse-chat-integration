@@ -66,7 +66,7 @@ module DiscourseChat
           }]
         }
 
-        message
+          return message
 
         end
 
@@ -93,7 +93,7 @@ module DiscourseChat
           }]
         }
 
-        message
+          return message
 
         end
 
